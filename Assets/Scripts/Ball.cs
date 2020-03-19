@@ -58,8 +58,7 @@ public class Ball : MonoBehaviour
 
     private void LauchOnMouseOnTouch()
     {
-        //if (IsDoubleTap() && notStarted)
-        if (Input.touchCount > 1 && notStarted)
+        if (IsDoubleTap() && notStarted)
         {
             rigidBody2D.velocity = new Vector2(UnityEngine.Random.Range(-xLaunch, xLaunch), yLaunch);
             notStarted = false;
@@ -103,7 +102,7 @@ public class Ball : MonoBehaviour
 
     public void ChangeBallColorByTouch()
     {
-        if (!notStarted && Input.touchCount > 0)
+        if (!notStarted && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             Vector3 touchPos = Input.GetTouch(0).position;
             Vector3 touchPosToWP = Camera.main.ScreenToWorldPoint(touchPos);

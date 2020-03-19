@@ -125,6 +125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenWidthInUnits: 16
-  minClamp: 5.6
-  maxClamp: 10.5
+  minClamp: 4
+  maxClamp: 12.2
   speed: 20
