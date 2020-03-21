@@ -7,11 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class Level : MonoBehaviour
 {
+    public int scoreBeginingOfLevel;
     int breakableBlocks;
     SceneLoader sceneLoader;
+    GameStatus gameStatus;
 
     private void Start()
     {
+        gameStatus = FindObjectOfType<GameStatus>();
+        scoreBeginingOfLevel = gameStatus.getScore();
         sceneLoader = FindObjectOfType<SceneLoader>();
     }
 
@@ -35,5 +39,10 @@ public class Level : MonoBehaviour
     public int GetBreakableBlocks()
     {
         return breakableBlocks;
+    }
+
+    public int GetScoreBeginingOfLevel()
+    {
+        return scoreBeginingOfLevel;
     }
 }

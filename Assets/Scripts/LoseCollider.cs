@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class LoseCollider : MonoBehaviour
 {
     SceneLoader sceneLoader;
     GameStatus gameStatus;
+    Level level;
 
     private void Start()
     {
+        level = FindObjectOfType<Level>();
         sceneLoader = FindObjectOfType<SceneLoader>();
         gameStatus = FindObjectOfType<GameStatus>();
     }
@@ -24,6 +23,7 @@ public class LoseCollider : MonoBehaviour
         gameStatus.LoseLife();
         if (life > 1)
         {
+            gameStatus.setScore(level.GetScoreBeginingOfLevel());
             sceneLoader.ReloadScene();
         }
         else

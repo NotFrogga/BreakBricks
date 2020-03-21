@@ -13,6 +13,8 @@ TagManager:
   - Background
   - Left
   - Right
+  - Score
+  - Life
   layers:
   - Default
   - TransparentFX

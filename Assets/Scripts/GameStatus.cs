@@ -28,7 +28,6 @@ public class GameStatus : MonoBehaviour
     private void Start()
     {
         Time.timeScale = timeScale;
-        scoreText = FindObjectOfType<TextMeshProUGUI>();
         scoreText.text = score.ToString();
         lifeText.text = life.ToString();
     }
@@ -52,6 +51,16 @@ public class GameStatus : MonoBehaviour
     public int getLife()
     {
         return life;
+    }
+
+    public int getScore()
+    {
+        return score;
+    }
+
+    public void setScore(int _score)
+    {
+        score = _score;
     }
 
     public void ResetGameStatus()
