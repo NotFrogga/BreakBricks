@@ -13,14 +13,14 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadFirstScene()
     {
-        GameStatus gameStatus = FindObjectOfType<GameStatus>();
-        gameStatus.ResetGameStatus();
         SceneManager.LoadScene(0);
     }
 
-    public void ReloadScene()
+    public void LoadGameOverScene()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex - 1);
+        GameStatus gameStatus = FindObjectOfType<GameStatus>();
+        gameStatus.ResetGameStatus();
+        int lastSceneIndex = SceneManager.sceneCountInBuildSettings - 1;
+        SceneManager.LoadScene(lastSceneIndex);
     }
 }

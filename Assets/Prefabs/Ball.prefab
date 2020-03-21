@@ -97,7 +97,7 @@ MonoBehaviour:
   paddle1: {fileID: 7851575402558191664, guid: 163fa8809affc8e408fa48590c1939b7, type: 3}
   xLaunch: 2
   yLaunch: 15
-  randomVelocity: 0.7
+  randomVelocity: 0.5
   maxSpeed: 70
 --- !u!50 &6482372946804222916
 Rigidbody2D:

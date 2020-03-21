@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
@@ -38,10 +35,13 @@ public class Ball : MonoBehaviour
         if (notStarted)
         {
           LockToPaddle();
+          LauchOnMouseOnTouch();
         }
-        LauchOnMouseOnTouch();
-        SetSpeedLimit();
-        ChangeBallColorByTouch();
+        else
+        {
+          SetSpeedLimit();
+          ChangeBallColorByTouch();
+        }
     }
 
     private void SetSpeedLimit()
@@ -60,7 +60,7 @@ public class Ball : MonoBehaviour
     {
         if (IsDoubleTap() && notStarted)
         {
-            rigidBody2D.velocity = new Vector2(UnityEngine.Random.Range(-xLaunch, xLaunch), yLaunch);
+            rigidBody2D.velocity = new Vector2(Random.Range(-xLaunch, xLaunch), yLaunch);
             notStarted = false;
         }
     }
@@ -75,7 +75,7 @@ public class Ball : MonoBehaviour
     {
         if (!notStarted)
         {
-            GetComponent<Rigidbody2D>().velocity += new Vector2(UnityEngine.Random.Range(-randomVelocity, randomVelocity), UnityEngine.Random.Range(-randomVelocity, randomVelocity));
+            GetComponent<Rigidbody2D>().velocity += new Vector2(Random.Range(-randomVelocity, randomVelocity), Random.Range(-randomVelocity, randomVelocity));
         }
     }
 
