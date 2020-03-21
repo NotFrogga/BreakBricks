@@ -5,9 +5,11 @@ using TMPro;
 
 public class GameStatus : MonoBehaviour
 {
+    [SerializeField] private int life = 3;
     [SerializeField] int score = 0;
     [Range(0.1f, 10f)] [SerializeField] float timeScale = 1.5f;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI lifeText;
 
     private void Awake()
     {
@@ -28,16 +30,28 @@ public class GameStatus : MonoBehaviour
         Time.timeScale = timeScale;
         scoreText = FindObjectOfType<TextMeshProUGUI>();
         scoreText.text = score.ToString();
+        lifeText.text = life.ToString();
     }
 
     private void Update()
     {
         scoreText.text = score.ToString();
+        lifeText.text = life.ToString();
     }
 
     public void AddScore(int points)
     {
         score += points;
+    }
+
+    public void LoseLife()
+    {
+        life--;
+    }
+
+    public int getLife()
+    {
+        return life;
     }
 
     public void ResetGameStatus()
