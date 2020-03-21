@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
     [SerializeField] float yLaunch = 15f;
     [SerializeField] float randomVelocity = .7f;
     [SerializeField] float maxSpeed = 70f;
+    [SerializeField] bool allowChangeColor;
 
 
     //cached reference
@@ -40,7 +41,10 @@ public class Ball : MonoBehaviour
         else
         {
           SetSpeedLimit();
-          ChangeBallColorByTouch();
+          if (allowChangeColor)
+          {
+            ChangeBallColorByTouch();
+          }
         }
     }
 
