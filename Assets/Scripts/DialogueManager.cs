@@ -35,7 +35,6 @@ public class DialogueManager : MonoBehaviour
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
-        dialogueText.text = sentence;
     }
     
     IEnumerator TypeSentence(string sentence)

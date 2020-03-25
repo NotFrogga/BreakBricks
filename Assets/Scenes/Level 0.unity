@@ -800,7 +800,7 @@ PrefabInstance:
     - target: {fileID: 8460895698000395351, guid: 94a050b94712c3a4b8bf1ebb4d67e4b4,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8460895698000395351, guid: 94a050b94712c3a4b8bf1ebb4d67e4b4,
         type: 3}
@@ -815,7 +815,7 @@ PrefabInstance:
     - target: {fileID: 8460895698000395351, guid: 94a050b94712c3a4b8bf1ebb4d67e4b4,
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
-      value: 5
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8795765348764600824, guid: 94a050b94712c3a4b8bf1ebb4d67e4b4,
         type: 3}

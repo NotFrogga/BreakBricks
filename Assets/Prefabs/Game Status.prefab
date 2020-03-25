@@ -384,22 +384,48 @@ PrefabInstance:
     - target: {fileID: 2467199998385659077, guid: 7f7a250763b29984eb0c6a1ef54d3b2a,
         type: 3}
       propertyPath: m_fontColor.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2467199998385659077, guid: 7f7a250763b29984eb0c6a1ef54d3b2a,
         type: 3}
       propertyPath: m_fontColor.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2467199998385659077, guid: 7f7a250763b29984eb0c6a1ef54d3b2a,
         type: 3}
       propertyPath: m_fontColor.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2467199998385659077, guid: 7f7a250763b29984eb0c6a1ef54d3b2a,
         type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4294967295
+      value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467199998385659077, guid: 7f7a250763b29984eb0c6a1ef54d3b2a,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467199998385659077, guid: 7f7a250763b29984eb0c6a1ef54d3b2a,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4,
+        type: 2}
+    - target: {fileID: 2467199998385659077, guid: 7f7a250763b29984eb0c6a1ef54d3b2a,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 2467199998385659077, guid: 7f7a250763b29984eb0c6a1ef54d3b2a,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467199998385659077, guid: 7f7a250763b29984eb0c6a1ef54d3b2a,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3343231541483846728, guid: 7f7a250763b29984eb0c6a1ef54d3b2a,
         type: 3}
