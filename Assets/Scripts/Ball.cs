@@ -15,8 +15,9 @@ public class Ball : MonoBehaviour
     Rigidbody2D rigidBody2D;
     GameObject leftTouchLimitGO;
     GameObject rightTouchLimitGO;
-
+    Animator animator;
     bool notStarted = true;
+    bool isOpen;
 
     Vector2 paddleToBallVector2;
     // Start is called before the first frame update
@@ -28,23 +29,31 @@ public class Ball : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D>();
         spriteRenderer.color = Color.white;
         paddleToBallVector2 = transform.position - paddle1.transform.position;
+        animator = GameObject.FindGameObjectWithTag("DialogueBox").GetComponent<Animator>();
+        //Checks if dialogue panel is open
+        isOpen = animator.GetBool("isOpen");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (notStarted)
+        //Checks if dialogue panel is open
+        isOpen = animator.GetBool("isOpen");
+        if (isOpen == false)
         {
-          LockToPaddle();
-          LauchOnMouseOnTouch();
-        }
-        else
-        {
-          SetSpeedLimit();
-          if (allowChangeColor)
-          {
-            ChangeBallColorByTouch();
-          }
+            if (notStarted)
+            {
+                LockToPaddle();
+                LauchOnMouseOnTouch();
+            }
+            else
+            {
+                SetSpeedLimit();
+                if (allowChangeColor)
+                {
+                    ChangeBallColorByTouch();
+                }
+            }
         }
     }
 

@@ -15,6 +15,7 @@ TagManager:
   - Right
   - Score
   - Life
+  - DialogueBox
   layers:
   - Default
   - TransparentFX

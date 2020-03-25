@@ -14,7 +14,6 @@ public class DialogueManager : MonoBehaviour
     {
         animator.SetBool("isOpen", true);
         npcText.text = dialogue.name;
-
         sentences.Clear();
 
         foreach (string sentence in dialogue.sentences)

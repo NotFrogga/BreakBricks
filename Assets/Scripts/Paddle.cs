@@ -6,13 +6,15 @@ using UnityEngine;
 public class Paddle : MonoBehaviour
 {
     [SerializeField] float screenWidthInUnits = 16f;
-    [SerializeField] float minClamp = 1f;
-    [SerializeField] float maxClamp = 15f;
-    [SerializeField] float speed = 300f;
+    [SerializeField] float minClamp;
+    [SerializeField] float maxClamp;
+    [SerializeField] float speed;
 
     SpriteRenderer spriteRenderer;
     GameObject leftTouchLimitGO;
     GameObject rightTouchLimitGO;
+    Animator animator;
+    bool isOpen;
     float leftTouchLimit;
     float rightTouchLimit;
     // Start is called before the first frame update
@@ -24,15 +26,15 @@ public class Paddle : MonoBehaviour
         rightTouchLimit = rightTouchLimitGO.transform.position.x;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = FindObjectOfType<Ball>().GetComponent<SpriteRenderer>().color;
+        animator = GameObject.FindGameObjectWithTag("DialogueBox").GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        isOpen = animator.GetBool("isOpen");
         spriteRenderer.color = FindObjectOfType<Ball>().GetComponent<SpriteRenderer>().color;
-
         MovePaddleByTouch();
-        //MovePaddleByMouseClick();
     }
 
     private void MovePaddleByMouseClick()
@@ -71,18 +73,23 @@ public class Paddle : MonoBehaviour
 
     private void MovePaddleByTouch()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary)
+        if (!isOpen && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary)
         {
             Vector2 touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
             if (touchPosition.x < leftTouchLimit && transform.position.x >= minClamp)
             {
-                transform.Translate(Vector3.left * speed * Time.deltaTime);
+                Vector3 directionL = Vector3.left * speed * Time.deltaTime;
+                transform.Translate(directionL);
             }
-            else if (touchPosition.x > rightTouchLimit && transform.position.x <= maxClamp) 
+            else if (touchPosition.x > rightTouchLimit && transform.position.x <= maxClamp)
             {
-                transform.Translate(Vector3.right * speed * Time.deltaTime);
+                Vector3 directionR = Vector3.right * speed * Time.deltaTime;
+                transform.Translate(directionR);
             }
         }
+        Vector3 clampedPosition = transform.position;
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, minClamp, maxClamp);
+        transform.position = clampedPosition;
     }
 }
