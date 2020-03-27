@@ -2,7 +2,7 @@
 
 public class Ball : MonoBehaviour
 {
-    [SerializeField] Paddle paddle1;
+    
     [SerializeField] float xLaunch = 3f;
     [SerializeField] float yLaunch = 15f;
     [SerializeField] float randomVelocity = .7f;
@@ -11,18 +11,20 @@ public class Ball : MonoBehaviour
 
 
     //cached reference
+    Paddle paddle1;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rigidBody2D;
     GameObject leftTouchLimitGO;
     GameObject rightTouchLimitGO;
     Animator animator;
-    bool notStarted = true;
+    [SerializeField] bool notStarted = true;
     bool isOpen;
 
     Vector2 paddleToBallVector2;
     // Start is called before the first frame update
     void Start()
     {
+        paddle1 = FindObjectOfType<Paddle>();
         leftTouchLimitGO = GameObject.FindGameObjectWithTag("Left");
         rightTouchLimitGO = GameObject.FindGameObjectWithTag("Right");
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -146,5 +148,10 @@ public class Ball : MonoBehaviour
                 result = true;
         }
         return result;
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

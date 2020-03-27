@@ -8,12 +8,15 @@ using UnityEngine.SceneManagement;
 public class Level : MonoBehaviour
 {
     public int scoreBeginingOfLevel;
+    public Ball ballPrefab;
     int breakableBlocks;
     SceneLoader sceneLoader;
     GameStatus gameStatus;
+    Paddle paddle;
 
     private void Start()
     {
+        paddle = FindObjectOfType<Paddle>();
         gameStatus = FindObjectOfType<GameStatus>();
         scoreBeginingOfLevel = gameStatus.getScore();
         sceneLoader = FindObjectOfType<SceneLoader>();
@@ -23,6 +26,7 @@ public class Level : MonoBehaviour
     {
         if (breakableBlocks == 0)
         {
+            gameStatus.AddLife();
             sceneLoader.LoadNextScene();
         }
     }
@@ -44,5 +48,12 @@ public class Level : MonoBehaviour
     public int GetScoreBeginingOfLevel()
     {
         return scoreBeginingOfLevel;
+    }
+
+    public void RestoreBall()
+    {
+        Ball ball = FindObjectOfType<Ball>();
+        ball.Destroy();
+        Instantiate(ballPrefab, new Vector3(paddle.transform.position.x, -8.95f, paddle.transform.position.z), paddle.transform.rotation);
     }
 }

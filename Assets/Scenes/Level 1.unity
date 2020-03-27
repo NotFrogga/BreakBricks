@@ -130,11 +130,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5365032384134359557, guid: 13665143f19883e4fb4a48beb03b76e7,
         type: 3}
-      propertyPath: paddle1
-      value: 
-      objectReference: {fileID: 1161683166}
-    - target: {fileID: 5365032384134359557, guid: 13665143f19883e4fb4a48beb03b76e7,
-        type: 3}
       propertyPath: leftTouchLimitGO
       value: 
       objectReference: {fileID: 1415799249}
@@ -889,6 +884,11 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4278190335
       objectReference: {fileID: 0}
+    - target: {fileID: 578575173740023183, guid: 94a050b94712c3a4b8bf1ebb4d67e4b4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -55.724976
+      objectReference: {fileID: 0}
     - target: {fileID: 1247560940812628246, guid: 94a050b94712c3a4b8bf1ebb4d67e4b4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1376,18 +1376,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 163fa8809affc8e408fa48590c1939b7, type: 3}
---- !u!114 &1161683166 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7851575402558191664, guid: 163fa8809affc8e408fa48590c1939b7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1161683165}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2854713513d8aef4ebf24f789eeae4c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1240921744
 PrefabInstance:
   m_ObjectHideFlags: 0

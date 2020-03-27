@@ -48,6 +48,11 @@ public class GameStatus : MonoBehaviour
         life--;
     }
 
+    public void AddLife()
+    {
+        life++;
+    }
+
     public int getLife()
     {
         return life;

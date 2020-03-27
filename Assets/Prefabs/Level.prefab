@@ -43,3 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e08b058098012f4498a831f5520de4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreBeginingOfLevel: 0
+  ballPrefab: {fileID: 5365032384134359557, guid: 13665143f19883e4fb4a48beb03b76e7,
+    type: 3}

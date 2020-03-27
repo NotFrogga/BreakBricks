@@ -24,7 +24,7 @@ public class LoseCollider : MonoBehaviour
         if (life > 1)
         {
             gameStatus.setScore(level.GetScoreBeginingOfLevel());
-            sceneLoader.ReloadScene();
+            level.RestoreBall();
         }
         else
         {
