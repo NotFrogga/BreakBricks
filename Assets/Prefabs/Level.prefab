@@ -46,3 +46,9 @@ MonoBehaviour:
   scoreBeginingOfLevel: 0
   ballPrefab: {fileID: 5365032384134359557, guid: 13665143f19883e4fb4a48beb03b76e7,
     type: 3}
+  isPaused: 0
+  allowChangeColor: 1
+  openPauseClip: {fileID: 8300000, guid: 53399fc8883da1a469344f6b550595c5, type: 3}
+  closePauseClip: {fileID: 8300000, guid: ebf3a4cdcc4fa694f874a0367ac03c73, type: 3}
+  multiplier: 0
+  levelLoaded: 0

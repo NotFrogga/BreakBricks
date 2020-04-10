@@ -9,32 +9,72 @@ public class Paddle : MonoBehaviour
     [SerializeField] float minClamp;
     [SerializeField] float maxClamp;
     [SerializeField] float speed;
-
+    public bool paddleLoseAnimEnded;
+    public AudioClip slideClip;
+    
+    private bool canMove;
     SpriteRenderer spriteRenderer;
     GameObject leftTouchLimitGO;
     GameObject rightTouchLimitGO;
-    Animator animator;
+    Animator dialogueBoxAnimator;
+    Animator paddleAnimator;
     bool isOpen;
     float leftTouchLimit;
     float rightTouchLimit;
+    Level level;
     // Start is called before the first frame update
     void Start()
     {
+        TriggerPaddleWinAnimation(false);
+        canMove = true;
         leftTouchLimitGO = GameObject.FindGameObjectWithTag("Left");
         leftTouchLimit = leftTouchLimitGO.transform.position.x;
         rightTouchLimitGO = GameObject.FindGameObjectWithTag("Right");
         rightTouchLimit = rightTouchLimitGO.transform.position.x;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = FindObjectOfType<Ball>().GetComponent<SpriteRenderer>().color;
-        animator = GameObject.FindGameObjectWithTag("DialogueBox").GetComponent<Animator>();
+        dialogueBoxAnimator = GameObject.FindGameObjectWithTag("DialogueBox").GetComponent<Animator>();
+        paddleAnimator = gameObject.GetComponent<Animator>();
+        level = FindObjectOfType<Level>();
+    }
+
+    public void AnimateLoseLife()
+    {
+        StopAllCoroutines();
+        StartCoroutine
+            (
+                AnimationDurationLoseLife
+                (
+                    1.5f,
+                    value =>
+                    {
+                        paddleAnimator.SetBool("ballIsRespawning", value);
+                        level.RestoreBall();
+                    }
+                 )
+            );
+
+    }
+
+    IEnumerator AnimationDurationLoseLife(float seconds, Action<bool> callback)
+    {
+        if (paddleAnimator != null)
+        {
+            paddleAnimator.SetBool("ballIsRespawning", true);
+        }
+        yield return new WaitForSeconds(1.5f);
+        callback(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        isOpen = animator.GetBool("isOpen");
+        isOpen = dialogueBoxAnimator.GetBool("isOpen");
         spriteRenderer.color = FindObjectOfType<Ball>().GetComponent<SpriteRenderer>().color;
-        MovePaddleByTouch();
+        if (canMove && !isOpen)
+        {
+            MovePaddleByTouch();
+        }
     }
 
     private void MovePaddleByMouseClick()
@@ -73,23 +113,58 @@ public class Paddle : MonoBehaviour
 
     private void MovePaddleByTouch()
     {
-        if (!isOpen && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary)
         {
+            paddleAnimator.SetBool("isSliding", true);
+            if (slideClip != null)
+            {
+                AudioSource.PlayClipAtPoint(slideClip, transform.position, .05f);
+            }
             Vector2 touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
-            if (touchPosition.x < leftTouchLimit && transform.position.x >= minClamp)
+            if (touchPosition.x < leftTouchLimit && touchPosition.y < leftTouchLimitGO.transform.position.y && transform.position.x >= minClamp)
             {
                 Vector3 directionL = Vector3.left * speed * Time.deltaTime;
                 transform.Translate(directionL);
             }
-            else if (touchPosition.x > rightTouchLimit && transform.position.x <= maxClamp)
+            else if (touchPosition.x > rightTouchLimit && touchPosition.y < leftTouchLimitGO.transform.position.y && transform.position.x <= maxClamp)
             {
                 Vector3 directionR = Vector3.right * speed * Time.deltaTime;
                 transform.Translate(directionR);
             }
         }
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            paddleAnimator.SetBool("isSliding", false);
+        }
         Vector3 clampedPosition = transform.position;
         clampedPosition.x = Mathf.Clamp(clampedPosition.x, minClamp, maxClamp);
         transform.position = clampedPosition;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        StopAllCoroutines();
+        StartCoroutine(DelayCollisionAnimation());
+    }
+
+    IEnumerator DelayCollisionAnimation()
+    {
+        paddleAnimator.SetBool("isHit", true);
+        yield return new WaitForSeconds(.20f);
+        paddleAnimator.SetBool("isHit", false);
+    }
+
+    public void SetCanMove(bool boolean)
+    {
+        canMove = boolean;
+    }
+
+    public void TriggerPaddleWinAnimation(bool boolean)
+    {
+        if (paddleAnimator != null)
+        {
+            paddleAnimator.SetBool("win", boolean);
+        }
     }
 }

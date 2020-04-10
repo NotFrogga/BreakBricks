@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7356704678906952738}
   - component: {fileID: 7356704678906952739}
   - component: {fileID: 7356704678906952736}
+  - component: {fileID: -9006932740639805188}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -66,3 +67,16 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 1
+--- !u!114 &-9006932740639805188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7356704678906952737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa55851e8f38eb48b61d849b61dff07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: eb8f0cf8c19e0ca4086eada6f425db39, type: 3}

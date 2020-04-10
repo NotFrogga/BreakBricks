@@ -5,30 +5,43 @@ public class LoseCollider : MonoBehaviour
     SceneLoader sceneLoader;
     GameStatus gameStatus;
     Level level;
+    Paddle paddle;
+    [SerializeField] AudioClip audioClip;
 
     private void Start()
     {
+        paddle = FindObjectOfType<Paddle>();
         level = FindObjectOfType<Level>();
         sceneLoader = FindObjectOfType<SceneLoader>();
         gameStatus = FindObjectOfType<GameStatus>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        PlayClip();
         ContinueOrGameOver();
     }
 
+    private void PlayClip()
+    {
+        if (audioClip != null)
+        {
+            AudioSource.PlayClipAtPoint(audioClip, transform.position);
+        }
+    }
     private void ContinueOrGameOver()
     {
-        int life = gameStatus.getLife();
         gameStatus.LoseLife();
-        if (life > 1)
+        int life = gameStatus.getLife();
+        if (life > 0)
         {
-            gameStatus.setScore(level.GetScoreBeginingOfLevel());
-            level.RestoreBall();
+            level.UpdateScoreMultiplierOnLostLife();
+            //gameStatus.setScore(level.GetScoreBeginingOfLevel());
+            paddle.AnimateLoseLife();
         }
         else
         {
-            sceneLoader.LoadGameOverScene();
+            //sceneLoader.LoadGameOverScene();
+            gameStatus.GameOver();
         }
     }
 }
